@@ -29,13 +29,38 @@ public class RoadAccidentService {
 
 
         roadAccidentRepository.save(roadAccident);
-        log.info("new accident"+roadAccident.getId() +"added");
+        log.info("new accident @ID "+roadAccident.getId() +"added");
     }
 
     public List<AccidentResponse> getAllAccidents()
     {
         List<RoadAccident> accidents = roadAccidentRepository.findAll();
         return  accidents.stream().map(this::mapToAccidentResponse).toList();
+    }
+
+
+
+
+    public AccidentResponse getRoadAccidentById(String id) {
+       return roadAccidentRepository.findById(id).map(this::mapToAccidentResponse).orElseThrow();
+    }
+
+    public void deleteAccident(String id) {
+        RoadAccident accidentToDelete = roadAccidentRepository.findById(id).orElseThrow();
+        roadAccidentRepository.delete(accidentToDelete);
+    }
+
+    public void updateAccident(AccidentRequest accidentRequest, String id) {
+        RoadAccident accidentToUpdate = roadAccidentRepository.findById(id).orElseThrow();
+        accidentToUpdate.setDescription(accidentRequest.getDescription());
+        accidentToUpdate.setDate(accidentRequest.getDate());
+        accidentToUpdate.setAddress(accidentRequest.getAddress());
+        accidentToUpdate.setInjured(accidentRequest.getInjured());
+        accidentToUpdate.setDeaths(accidentRequest.getDeaths());
+        accidentToUpdate.setInvolvedVehicles(accidentRequest.getInvolvedVehicles());
+
+        roadAccidentRepository.save(accidentToUpdate);
+
     }
 
     private AccidentResponse mapToAccidentResponse(RoadAccident accident) {
@@ -49,5 +74,7 @@ public class RoadAccidentService {
                 .involvedVehicles(accident.getInvolvedVehicles())
                 .build();
     }
+
+
 
 }
