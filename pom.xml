@@ -9,6 +9,7 @@
         <module>discovery-server</module>
         <module>traffic-service</module>
         <module>getaway</module>
+        <module>user-service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

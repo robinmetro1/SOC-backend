@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="api-getaway" />
         <module name="discovery-server" />
+        <module name="user-service" />
         <module name="accident-service" />
         <module name="traffic-service" />
       </profile>
@@ -20,6 +21,7 @@
       <module name="api-getaway" options="-parameters" />
       <module name="discovery-server" options="-parameters" />
       <module name="traffic-service" options="-parameters" />
+      <module name="user-service" options="-parameters" />
     </option>
   </component>
 </project>
