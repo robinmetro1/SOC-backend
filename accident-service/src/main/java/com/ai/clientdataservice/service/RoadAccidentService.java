@@ -52,12 +52,30 @@ public class RoadAccidentService {
 
     public void updateAccident(AccidentRequest accidentRequest, String id) {
         RoadAccident accidentToUpdate = roadAccidentRepository.findById(id).orElseThrow();
-        accidentToUpdate.setDescription(accidentRequest.getDescription());
-        accidentToUpdate.setDate(accidentRequest.getDate());
-        accidentToUpdate.setAddress(accidentRequest.getAddress());
-        accidentToUpdate.setInjured(accidentRequest.getInjured());
-        accidentToUpdate.setDeaths(accidentRequest.getDeaths());
-        accidentToUpdate.setInvolvedVehicles(accidentRequest.getInvolvedVehicles());
+        if (accidentRequest.getDescription() != null) {
+            accidentToUpdate.setDescription(accidentRequest.getDescription());
+        }
+
+        if (accidentRequest.getDate() != null) {
+            accidentToUpdate.setDate(accidentRequest.getDate());
+        }
+
+        if (accidentRequest.getAddress() != null) {
+            accidentToUpdate.setAddress(accidentRequest.getAddress());
+        }
+
+        if (accidentRequest.getInjured() != 0) {
+            accidentToUpdate.setInjured(accidentRequest.getInjured());
+        }
+
+        if (accidentRequest.getDeaths() != 0) {
+            accidentToUpdate.setDeaths(accidentRequest.getDeaths());
+        }
+
+        if (accidentRequest.getInvolvedVehicles() != null) {
+            accidentToUpdate.setInvolvedVehicles(accidentRequest.getInvolvedVehicles());
+        }
+
 
         roadAccidentRepository.save(accidentToUpdate);
 

@@ -36,7 +36,7 @@ public class RoadAccident {
     private int deaths;
 
     @Field("injured")
-    private int injured;
+    private int injured ;
 
 
 
